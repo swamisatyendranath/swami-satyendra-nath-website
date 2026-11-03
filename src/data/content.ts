@@ -12,15 +12,26 @@ export const CONTACT_INFO = {
   tapasthaliDetailsEn: 'Swami Ji resides and conducts sacred tantric sadhana across Delhi, Haridwar (Ganga bank), and Kashi (Manikarnika & Aghor Peeth).',
 };
 
+// Base URL helper for GitHub Pages compatibility
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+export const getAssetUrl = (path: string): string => {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  return `${baseUrl}${path.replace(/^\//, '')}`;
+};
+
 export const IMAGES = {
-  swamiPortrait: '/assets/aistudio/WhatsApp_Image_2026-10-29_at_00.18.45_f20e48ad.jpeg',
-  swamiForestSamadhi: '/assets/aistudio/WhatsApp_Image_2024-05-31_at_22.26.15_9d33ae92.jpeg',
-  swamiRiverDhuni: '/assets/aistudio/WhatsApp_Image_2024-05-31_at_22.26.07_bac920cb.jpeg',
-  swamiTantricAgni: '/assets/aistudio/WhatsApp_Image_2024-05-31_at_22.02.59_40e0061d.jpeg',
-  kashiManikarnika: '/assets/aistudio/1-1_16d33cb2.jpg',
-  himalayanKedarnath: '/assets/aistudio/fd57701fa6b13e69e646c7bbd476cb79_95d2b031.jpg',
-  deviDurgaMaa: '/assets/aistudio/83d53c68f9d34d4d54972bcbb875dd55_b3884bbb.jpg',
-  bhagwanShiva: '/assets/aistudio/4ca3e3e74ad39c62f844db1b7326df3b_01330475.jpg',
+  swamiPortrait: getAssetUrl('assets/aistudio/WhatsApp_Image_2026-10-29_at_00.18.45_f20e48ad.jpeg'),
+  swamiForestSamadhi: getAssetUrl('assets/aistudio/WhatsApp_Image_2024-05-31_at_22.26.15_9d33ae92.jpeg'),
+  swamiRiverDhuni: getAssetUrl('assets/aistudio/WhatsApp_Image_2024-05-31_at_22.26.07_bac920cb.jpeg'),
+  swamiTantricAgni: getAssetUrl('assets/aistudio/WhatsApp_Image_2024-05-31_at_22.02.59_40e0061d.jpeg'),
+  kashiManikarnika: getAssetUrl('assets/aistudio/1-1_16d33cb2.jpg'),
+  himalayanKedarnath: getAssetUrl('assets/aistudio/fd57701fa6b13e69e646c7bbd476cb79_95d2b031.jpg'),
+  deviDurgaMaa: getAssetUrl('assets/aistudio/83d53c68f9d34d4d54972bcbb875dd55_b3884bbb.jpg'),
+  bhagwanShiva: getAssetUrl('assets/aistudio/4ca3e3e74ad39c62f844db1b7326df3b_01330475.jpg'),
 };
 
 export interface TantricServiceItem {
@@ -182,13 +193,13 @@ export const facebookContentData: FacebookContentItem[] = [
     categoryHi: 'तांत्रिक अनुष्ठान',
     categoryEn: 'Tantric Ritual',
     duration: '01:07',
-    videoSrc: '/assets/aistudio/WhatsApp_Video_2026-07-11_at_2.02.12_AM_7626c383.mp4',
+    videoSrc: getAssetUrl('assets/aistudio/WhatsApp_Video_2026-07-11_at_2.02.12_AM_7626c383.mp4'),
     facebookUrl: 'https://www.facebook.com/share/1FBZfhS2rb/',
     descriptionHi: 'स्वामी सत्येन्द्र नाथ जी द्वारा प्राचीन मन्दिर गर्भगृह में सम्पन्न महाचण्डी हवन, त्रिशूल पर पुष्पमाला अर्पण एवं मन्त्रोच्चार सहित अघोर साधना।',
     descriptionEn: 'Sacred visual recording of Swami Satyendra Nath Ji performing Maha Chandi tantric havan, trishul archana and mantra chanting inside the temple sanctum.',
     dateHi: 'प्रत्यक्ष साधना वीडियो',
     dateEn: 'Authentic Sadhana Video',
-    thumbnailPlaceholder: '/assets/aistudio/WhatsApp_Image_2024-05-31_at_22.02.59_40e0061d.jpeg',
+    thumbnailPlaceholder: getAssetUrl('assets/aistudio/WhatsApp_Image_2024-05-31_at_22.02.59_40e0061d.jpeg'),
   },
   {
     id: 'fb-vid-2',
@@ -199,13 +210,13 @@ export const facebookContentData: FacebookContentItem[] = [
     categoryHi: 'सप्तशती पाठ',
     categoryEn: 'Saptashati Path',
     duration: '00:07',
-    videoSrc: '/assets/aistudio/17bbeee4-7529-4a8b-ac9c-0cf0f86961f1_87662e19.mp4',
+    videoSrc: getAssetUrl('assets/aistudio/17bbeee4-7529-4a8b-ac9c-0cf0f86961f1_87662e19.mp4'),
     facebookUrl: 'https://www.facebook.com/share/1FBZfhS2rb/',
     descriptionHi: 'प्रस्तुति: स्वामी सत्येन्द्र नाथ जी। श्री दुर्गा सप्तशती प्रथम अध्याय (मधु-कैटभ वध - प्रथम चरित्र) का पावन पाठ एवं आध्यात्मिक प्रस्तुति।',
     descriptionEn: 'Presented by Swami Satyendra Nath Ji: Chanting and spiritual presentation of Sri Durga Saptashati Chapter 1 (Madhu-Kaitabh Vadh).',
     dateHi: 'आधिकारिक फेसबुक वीडियो',
     dateEn: 'Official Facebook Video',
-    thumbnailPlaceholder: '/assets/aistudio/WhatsApp_Image_2026-10-29_at_00.18.45_f20e48ad.jpeg',
+    thumbnailPlaceholder: getAssetUrl('assets/aistudio/WhatsApp_Image_2026-10-29_at_00.18.45_f20e48ad.jpeg'),
   },
   {
     id: 'fb-vid-3',
@@ -216,13 +227,13 @@ export const facebookContentData: FacebookContentItem[] = [
     categoryHi: 'धार्मिक महागाथा',
     categoryEn: 'Sacred Saga',
     duration: '00:07',
-    videoSrc: '/assets/aistudio/12ed595c-99da-4242-a61a-3446de4cbbab_084e4421.mp4',
+    videoSrc: getAssetUrl('assets/aistudio/12ed595c-99da-4242-a61a-3446de4cbbab_084e4421.mp4'),
     facebookUrl: 'https://www.facebook.com/share/1FBZfhS2rb/',
     descriptionHi: 'तेरह अध्यायों में समाहित माँ की अनंत शक्ति—श्रद्धा और भक्ति के साथ देखिए श्री दुर्गा सप्तशती। प्रस्तुति: स्वामी सत्येन्द्र नाथ जी।',
     descriptionEn: 'Embodying the infinite divine energy across 13 sacred chapters—witness Sri Durga Saptashati presented by Swami Satyendra Nath Ji.',
     dateHi: 'आधिकारिक फेसबुक वीडियो',
     dateEn: 'Official Facebook Video',
-    thumbnailPlaceholder: '/assets/aistudio/83d53c68f9d34d4d54972bcbb875dd55_b3884bbb.jpg',
+    thumbnailPlaceholder: getAssetUrl('assets/aistudio/83d53c68f9d34d4d54972bcbb875dd55_b3884bbb.jpg'),
   },
   {
     id: 'fb-vid-4',
@@ -233,13 +244,13 @@ export const facebookContentData: FacebookContentItem[] = [
     categoryHi: 'धार्मिक कथा',
     categoryEn: 'Religious Katha',
     duration: '00:09',
-    videoSrc: '/assets/aistudio/c9c7fc14-7b2f-4d36-8a78-b8b08f19c6ad_728779ef.mp4',
+    videoSrc: getAssetUrl('assets/aistudio/c9c7fc14-7b2f-4d36-8a78-b8b08f19c6ad_728779ef.mp4'),
     facebookUrl: 'https://www.facebook.com/share/1FBZfhS2rb/',
     descriptionHi: 'माँ दुर्गा के प्राकट्य और महिषासुर मर्दिनी स्वरूप की पावन धार्मिक कथा एवं दिव्य दर्शन। हमारे फेसबुक पेज से अवश्य जुड़े रहें।',
     descriptionEn: 'The divine descent of Mother Durga and the narrative of Mahishasura Mardini. Stay connected with Swami Ji on Facebook.',
     dateHi: 'धार्मिक कथा श्रृंखला',
     dateEn: 'Religious Katha Series',
-    thumbnailPlaceholder: '/assets/aistudio/83d53c68f9d34d4d54972bcbb875dd55_b3884bbb.jpg',
+    thumbnailPlaceholder: getAssetUrl('assets/aistudio/83d53c68f9d34d4d54972bcbb875dd55_b3884bbb.jpg'),
   },
   {
     id: 'fb-vid-5',
@@ -250,13 +261,13 @@ export const facebookContentData: FacebookContentItem[] = [
     categoryHi: 'दिव्य दर्शन',
     categoryEn: 'Divine Darshan',
     duration: '00:10',
-    videoSrc: '/assets/aistudio/1f770df1-778f-4866-863a-9e1d08810c4b_47910022.mp4',
+    videoSrc: getAssetUrl('assets/aistudio/1f770df1-778f-4866-863a-9e1d08810c4b_47910022.mp4'),
     facebookUrl: 'https://www.facebook.com/share/1FBZfhS2rb/',
     descriptionHi: 'स्वर्ण प्रभा से आलोकित माँ जगदम्बा के अष्टभुजा स्वरूप के अलौकिक दर्शन एवं पुष्प वृष्टि—भक्तों के कल्याणार्थ फेसबुक पर प्रकाशित।',
     descriptionEn: 'Divine golden radiance of Mother Jagadamba bestowing fearless blessings upon devotees, published on Facebook.',
     dateHi: 'फेसबुक दिव्य दर्शन',
     dateEn: 'Facebook Divine Darshan',
-    thumbnailPlaceholder: '/assets/aistudio/83d53c68f9d34d4d54972bcbb875dd55_b3884bbb.jpg',
+    thumbnailPlaceholder: getAssetUrl('assets/aistudio/83d53c68f9d34d4d54972bcbb875dd55_b3884bbb.jpg'),
   },
   {
     id: 'fb-vid-6',
@@ -267,13 +278,13 @@ export const facebookContentData: FacebookContentItem[] = [
     categoryHi: 'दिव्य दर्शन',
     categoryEn: 'Divine Darshan',
     duration: '00:09',
-    videoSrc: '/assets/aistudio/3048b2c9-4895-4186-935b-e0479c834774_686db27e.mp4',
+    videoSrc: getAssetUrl('assets/aistudio/3048b2c9-4895-4186-935b-e0479c834774_686db27e.mp4'),
     facebookUrl: 'https://www.facebook.com/share/1FBZfhS2rb/',
     descriptionHi: 'समस्त ब्रह्माण्ड को अभय प्रदान करने वाली सिंहवाहिनी माँ दुर्गा और नवदुर्गा स्वरूपों का अलौकिक दर्शन।',
     descriptionEn: 'The celestial manifestation of the Nine Durgas showering grace and removing all fears from the cosmos.',
     dateHi: 'फेसबुक दिव्य दर्शन',
     dateEn: 'Facebook Divine Darshan',
-    thumbnailPlaceholder: '/assets/aistudio/83d53c68f9d34d4d54972bcbb875dd55_b3884bbb.jpg',
+    thumbnailPlaceholder: getAssetUrl('assets/aistudio/83d53c68f9d34d4d54972bcbb875dd55_b3884bbb.jpg'),
   },
 ];
 
