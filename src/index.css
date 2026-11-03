@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-devanagari: 'Noto Serif Devanagari', serif;
+    --font-heading: 'Rozha One', 'Noto Serif Devanagari', serif;
+    --font-cinzel: 'Cinzel', serif;
+  }
+
+  body {
+    font-family: 'Noto Serif Devanagari', system-ui, -apple-system, sans-serif;
+    background-color: #000000;
+    color: #F3E8D0;
+  }
+}
+
+/* Temple Lamp Flame Flicker */
+@keyframes diyaFlicker {
+  0%, 100% {
+    transform: scale(1) rotate(-1deg);
+    filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.85)) drop-shadow(0 0 25px rgba(220, 38, 38, 0.5));
+  }
+  25% {
+    transform: scale(1.06, 0.96) rotate(1.5deg);
+    filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 30px rgba(234, 88, 12, 0.6));
+  }
+  50% {
+    transform: scale(0.97, 1.04) rotate(-0.5deg);
+    filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.75)) drop-shadow(0 0 20px rgba(220, 38, 38, 0.45));
+  }
+  75% {
+    transform: scale(1.03, 0.98) rotate(1deg);
+    filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.9)) drop-shadow(0 0 28px rgba(234, 88, 12, 0.55));
+  }
+}
+
+/* Subtle Temple Bell Ringing */
+@keyframes bellChime {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(14deg); }
+  40% { transform: rotate(-12deg); }
+  60% { transform: rotate(8deg); }
+  80% { transform: rotate(-4deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Golden Halo Pulsing */
+@keyframes goldenHalo {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04);
+  }
+}
+
+/* Incense Drift */
+@keyframes incenseSmoke {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.45;
+  }
+  80% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translateY(-80px) scaleX(1.4);
+    opacity: 0;
+  }
+}
+
+.animate-diya {
+  animation: diyaFlicker 3s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animate-diya-fast {
+  animation: diyaFlicker 2.1s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animate-bell {
+  animation: bellChime 1.2s ease-in-out;
+  transform-origin: top center;
+}
+
+.animate-halo {
+  animation: goldenHalo 4s ease-in-out infinite;
+}
+
+.animate-smoke {
+  animation: incenseSmoke 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Custom Scrollbar for Black Theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 4px;
+  border: 1px solid #404040;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D97706;
+}
+
+/* Sanskrit & Temple typography classes */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-heading {
+  font-family: 'Rozha One', 'Noto Serif Devanagari', serif;
+}
+
+.font-devanagari {
+  font-family: 'Noto Serif Devanagari', serif;
+}
+
+/* Gold foil text shimmer */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FFFBEB 0%, #FDE047 25%, #EAB308 50%, #CA8A04 75%, #FEF08A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-saffron-gradient {
+  background: linear-gradient(135deg, #FFEDD5 0%, #FB923C 35%, #EA580C 70%, #C2410C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle Temple Wall Texture Effect for Black Theme */
+.bg-temple-pattern {
+  background-color: #000000;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(185, 28, 28, 0.18) 0%, transparent 60%),
+    radial-gradient(circle at 100% 50%, rgba(217, 119, 6, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 0% 50%, rgba(153, 27, 27, 0.12) 0%, transparent 45%);
+}
