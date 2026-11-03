@@ -4,22 +4,33 @@
     <meta charset="utf-8" />
     <title>स्वामी सत्येन्द्र नाथ जी | तंत्र, पूजा एवं वैदिक अनुष्ठान</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="0; url=/swami-satyendra-nath-website/" />
     <script>
-      // Single Page Apps for GitHub Pages
-      // Redirects 404 paths back to the repository base URL
-      var pathSegmentsToKeep = 1;
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+      // Single Page Application redirect for GitHub Pages
+      // Ensures visitors landing on any path or without trailing slash get redirected to site root
+      var repoName = 'swami-satyendra-nath-website';
+      var origin = window.location.origin;
+      var pathname = window.location.pathname;
+
+      if (!pathname.endsWith('/')) {
+        if (pathname.endsWith(repoName)) {
+          window.location.replace(origin + '/' + repoName + '/');
+        } else {
+          window.location.replace(origin + '/' + repoName + '/');
+        }
+      } else {
+        window.location.replace(origin + '/' + repoName + '/');
+      }
     </script>
   </head>
-  <body style="background-color: #000000; color: #F59E0B; text-align: center; font-family: sans-serif; padding-top: 20vh;">
-    <h2>॥ स्वामी सत्येन्द्र नाथ जी ॥</h2>
-    <p>लोड हो रहा है, कृपया प्रतीक्षा करें...</p>
+  <body style="background-color: #000000; color: #F59E0B; text-align: center; font-family: sans-serif; padding-top: 22vh;">
+    <h2 style="font-size: 24px; margin-bottom: 12px; color: #FBBF24;">॥ ॐ नमः शिवाय ॥</h2>
+    <h3 style="font-size: 20px; margin-bottom: 16px; color: #FDE68A;">स्वामी सत्येन्द्र नाथ जी</h3>
+    <p style="font-size: 15px; color: #D1D5DB;">वेबसाइट लोड हो रही है, कृपया प्रतीक्षा करें...</p>
+    <p style="margin-top: 20px;">
+      <a href="/swami-satyendra-nath-website/" style="color: #F59E0B; text-decoration: underline; font-weight: bold;">
+        यदि आप स्वतः रीडायरेक्ट नहीं होते तो यहाँ क्लिक करें
+      </a>
+    </p>
   </body>
 </html>

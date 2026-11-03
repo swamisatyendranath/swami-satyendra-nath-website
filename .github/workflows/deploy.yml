@@ -18,13 +18,11 @@ permissions:
 # Allow one concurrent deployment
 concurrency:
   group: 'pages'
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  # Build job: prepares code, installs packages, and compiles Vite production build
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -43,20 +41,35 @@ jobs:
             npm install --legacy-peer-deps
           fi
 
+      - name: Setup GitHub Pages configuration
+        uses: actions/configure-pages@v5
+
       - name: Build website for GitHub Pages (/swami-satyendra-nath-website/)
         run: npm run build
         env:
           NODE_ENV: production
           BASE_PATH: /swami-satyendra-nath-website/
 
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v5
+      - name: Verify dist contents
+        run: |
+          echo "Checking dist folder before artifact upload:"
+          ls -la dist
+          test -f dist/index.html || { echo "ERROR: dist/index.html not found!"; exit 1; }
+          test -f dist/.nojekyll || { echo "Adding .nojekyll"; touch dist/.nojekyll; }
 
-      - name: Upload dist artifact
+      - name: Upload dist artifact to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
 
+  # Deploy job: deploys the uploaded artifact to GitHub Pages
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
