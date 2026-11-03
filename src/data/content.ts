@@ -12,10 +12,12 @@ export const CONTACT_INFO = {
   tapasthaliDetailsEn: 'Swami Ji resides and conducts sacred tantric sadhana across Delhi, Haridwar (Ganga bank), and Kashi (Manikarnika & Aghor Peeth).',
 };
 
-// Base URL helper for GitHub Pages compatibility
-const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+// Base URL helper for GitHub Pages compatibility (https://swamisatyendranath.github.io/swami-satyendra-nath-website/)
+const envBase = (import.meta.env.BASE_URL && import.meta.env.BASE_URL !== '/')
   ? import.meta.env.BASE_URL
-  : `${import.meta.env.BASE_URL}/`;
+  : (import.meta.env.PROD ? '/swami-satyendra-nath-website/' : '/');
+
+const baseUrl = envBase.endsWith('/') ? envBase : `${envBase}/`;
 
 export const getAssetUrl = (path: string): string => {
   if (!path) return '';
