@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Menu, X, Phone, MessageCircle, Globe } from 'lucide-react';
 import { Language, CONTACT_INFO } from '../data/content';
@@ -8,7 +9,10 @@ interface NavbarProps {
   onToggleLang: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentLang, onToggleLang }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  currentLang,
+  onToggleLang,
+}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -21,101 +25,118 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onToggleLang }) => 
     { href: '#contact', labelHi: 'सम्पर्क', labelEn: 'Contact' },
   ];
 
-  return (
-    <header className="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-neutral-800 shadow-2xl shadow-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4 h-20">
-          {/* Zone 1: Single Text Element Wordmark with Temple Bell */}
-          <div className="flex items-center gap-3 shrink-0">
-            <TempleBell size={36} className="hidden sm:inline-flex" />
-            <a
-              href="#home"
-              className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-amber-200 hover:text-amber-100 transition-colors whitespace-nowrap shrink-0 font-cinzel flex items-center gap-1.5"
-            >
-              <span className="text-amber-400">॥</span>
-              <span>{currentLang === 'hi' ? 'स्वामी सत्येन्द्र नाथ जी' : 'Swami Satyendra Nath'}</span>
-              <span className="text-amber-400">॥</span>
-            </a>
-          </div>
+  const closeMenu = () => setMobileMenuOpen(false);
 
-          {/* Zone 2: Concise Single-Line Nav Links */}
-          <nav className="hidden xl:flex items-center gap-5 text-xs lg:text-sm font-medium text-amber-100/85">
+  return (
+    <header className="sticky top-0 z-50 w-full bg-[#080706]/95 backdrop-blur-xl border-b border-amber-500/30 shadow-lg shadow-black/40">
+      <div className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-8">
+        <div className="min-h-[68px] sm:min-h-[78px] flex items-center justify-between gap-2 sm:gap-4">
+
+          {/* Logo and Name */}
+          <a
+            href="#home"
+            onClick={closeMenu}
+            className="flex items-center gap-2 min-w-0"
+          >
+            <TempleBell
+              size={34}
+              className="hidden sm:inline-flex text-amber-400 shrink-0"
+            />
+            <span className="text-amber-400 text-sm sm:text-lg">॥</span>
+            <span className="font-bold text-amber-100 text-sm sm:text-lg md:text-xl leading-tight whitespace-nowrap">
+              {currentLang === 'hi'
+                ? 'स्वामी सत्येन्द्र नाथ जी'
+                : 'Swami Satyendra Nath'}
+            </span>
+            <span className="text-amber-400 text-sm sm:text-lg">॥</span>
+          </a>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden xl:flex items-center gap-4 2xl:gap-5">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="hover:text-amber-300 transition-colors whitespace-nowrap shrink-0 py-1 border-b border-transparent hover:border-amber-400/60 font-devanagari"
+                className="text-amber-100/85 hover:text-amber-300 text-sm transition-colors whitespace-nowrap py-2 border-b border-transparent hover:border-amber-400"
               >
                 {currentLang === 'hi' ? link.labelHi : link.labelEn}
               </a>
             ))}
           </nav>
 
-          {/* Zone 3: WhatsApp Action & Language Switcher */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Language Switch */}
+          {/* Action Buttons */}
+          <div className="flex items-center gap-2 shrink-0">
+
+            {/* Language */}
             <button
+              type="button"
               onClick={onToggleLang}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-[#141414] border border-neutral-700 hover:border-amber-400 text-amber-200 hover:text-amber-100 text-xs font-medium transition-all shadow-sm"
-              title={currentLang === 'hi' ? 'Switch to English' : 'हिन्दी में बदलें'}
+              className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg border border-amber-500/30 bg-amber-950/30 text-amber-200 hover:bg-amber-900/40 transition-colors text-xs sm:text-sm"
+              aria-label="Change language"
             >
-              <Globe className="w-3.5 h-3.5 text-amber-400" />
-              <span className="whitespace-nowrap font-sans font-semibold">
-                {currentLang === 'hi' ? 'EN' : 'हिन्दी'}
-              </span>
+              <Globe className="w-4 h-4 text-amber-400" />
+              <span>{currentLang === 'hi' ? 'EN' : 'हिन्दी'}</span>
             </button>
 
-            {/* Direct WhatsApp Callout: 8800460088 */}
+            {/* WhatsApp */}
             <a
               href={CONTACT_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md shadow-emerald-950/60 transition-all whitespace-nowrap shrink-0 border border-emerald-400/40"
+              aria-label="WhatsApp पर संपर्क करें"
+              className="flex items-center justify-center gap-2 w-10 h-10 sm:w-auto sm:px-4 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white border border-emerald-400/40 shadow-md transition-colors"
             >
-              <MessageCircle className="w-3.5 h-3.5 fill-current" />
-              <span>{CONTACT_INFO.phoneDisplay}</span>
+              <MessageCircle className="w-5 h-5" />
+              <span className="hidden sm:inline text-sm font-semibold">
+                WhatsApp
+              </span>
             </a>
 
-            {/* Mobile menu toggle */}
+            {/* Mobile Menu */}
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-md text-amber-200 hover:text-amber-100 hover:bg-[#1A1A1A] focus:outline-none"
-              aria-label="Toggle navigation menu"
+              className="xl:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-amber-500/30 bg-amber-950/30 text-amber-200 hover:bg-amber-900/40"
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen
+                ? <X className="w-6 h-6" />
+                : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Responsive Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-[#0D0D0D] border-b border-neutral-800 px-4 pt-3 pb-6 space-y-3">
-          <div className="grid grid-cols-2 gap-2 pb-3 border-b border-neutral-800">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2.5 rounded-lg text-xs sm:text-sm font-medium text-amber-100/90 hover:bg-[#1A1A1A] hover:text-amber-300 transition-colors"
-              >
-                {currentLang === 'hi' ? link.labelHi : link.labelEn}
-              </a>
-            ))}
-          </div>
+        <div className="xl:hidden bg-[#100D09] border-t border-amber-500/20 shadow-2xl">
+          <nav className="max-w-7xl mx-auto px-3 sm:px-5 py-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className="flex items-center px-4 py-3 rounded-lg text-sm sm:text-base text-amber-100/90 bg-white/[0.03] border border-white/5 hover:border-amber-500/40 hover:bg-amber-900/20 transition-colors"
+                >
+                  {currentLang === 'hi' ? link.labelHi : link.labelEn}
+                </a>
+              ))}
+            </div>
 
-          <div className="pt-2 flex flex-col gap-2">
             <a
               href={`tel:${CONTACT_INFO.phone}`}
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-[#141414] border border-amber-600/60 text-amber-200 font-medium text-xs sm:text-sm"
+              onClick={closeMenu}
+              className="mt-4 flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-amber-700/20 border border-amber-500/40 text-amber-200 font-semibold text-sm"
             >
               <Phone className="w-4 h-4 text-amber-400" />
-              <span>{`कॉल करें: ${CONTACT_INFO.phoneDisplay}`}</span>
+              कॉल करें: {CONTACT_INFO.phoneDisplay}
             </a>
-          </div>
+          </nav>
         </div>
       )}
     </header>
   );
 };
+
