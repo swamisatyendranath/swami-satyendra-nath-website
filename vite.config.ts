@@ -7,8 +7,7 @@ export default defineConfig(({command, mode}) => {
   // Explicitly configured for GitHub Pages: https://swamisatyendranath.github.io/swami-satyendra-nath-website/
   // Does not rely solely on BASE_PATH env variable; any production build unconditionally uses this base path.
   const isProduction = command === 'build' || mode === 'production' || process.env.NODE_ENV === 'production';
-  const basePath = isProduction ? '/swami-satyendra-nath-website/' : (process.env.BASE_PATH || '/');
-
+  const basePath = '/';
   return {
     base: basePath,
     plugins: [react(), tailwindcss()],
