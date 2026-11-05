@@ -13,11 +13,13 @@ export const CONTACT_INFO = {
 };
 
 // Base URL helper for GitHub Pages compatibility (https://swamisatyendranath.github.io/swami-satyendra-nath-website/)
-const envBase = (import.meta.env.BASE_URL && import.meta.env.BASE_URL !== '/')
-  ? import.meta.env.BASE_URL
-  : (import.meta.env.PROD ? '/swami-satyendra-nath-website/' : '/');
+const baseUrl = '/';
 
-const baseUrl = envBase.endsWith('/') ? envBase : `${envBase}/`;
+export const getAssetUrl = (path: string): string => {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  return `${baseUrl}${path.replace(/^\//, '')}`;
+};
 
 export const getAssetUrl = (path: string): string => {
   if (!path) return '';
