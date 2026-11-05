@@ -21,12 +21,6 @@ export const getAssetUrl = (path: string): string => {
   return `${baseUrl}${path.replace(/^\//, '')}`;
 };
 
-export const getAssetUrl = (path: string): string => {
-  if (!path) return '';
-  if (path.startsWith('http://') || path.startsWith('https://')) return path;
-  return `${baseUrl}${path.replace(/^\//, '')}`;
-};
-
 export const IMAGES = {
   swamiPortrait: getAssetUrl('assets/aistudio/WhatsApp_Image_2026-10-29_at_00.18.45_f20e48ad.jpeg'),
   swamiForestSamadhi: getAssetUrl('assets/aistudio/WhatsApp_Image_2024-05-31_at_22.26.15_9d33ae92.jpeg'),
